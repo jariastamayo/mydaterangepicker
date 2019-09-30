@@ -1,7 +1,7 @@
 {
-  "name": "mydaterangepicker",
-  "version": "4.2.1",
-  "description": "Angular date range picker",
+  "name": "mydaterangepicker-mask",
+  "version": "4.2.2",
+  "description": "Angular date range picker with date mask",
   "keywords": [
     "Angular2",
     "Angular4",

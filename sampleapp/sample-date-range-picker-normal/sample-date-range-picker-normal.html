@@ -125,7 +125,7 @@
             <td>
                 <my-date-range-picker [options]="myDateRangePickerOptionsNormal" (dateRangeChanged)="onDateRangeChanged($event)" (inputFieldChanged)="onInputFieldChanged($event)"
                                       (calendarViewChanged)="onCalendarViewChanged($event)" (dateSelected)="onDateSelected($event)"
-                                      [selDateRange]="selectedDateRangeNormal" [placeholder]="placeholderTxt"></my-date-range-picker>
+                                      [selDateRange]="selectedDateRangeNormal" [placeholder]="placeholderTxt" [maskString]="'99/99/9999 - 99/99/9999'"></my-date-range-picker>
             </td>
             <td>
                 <div class="selectedtext" [ngStyle]="{border: border}">
