@@ -12,7 +12,7 @@ const sampleDrpNormalTemplate: string = require('./sample-date-range-picker-norm
 export class SampleDateRangePickerNormal implements OnInit {
 
     private myDateRangePickerOptionsNormal: IMyDrpOptions = {
-        dateFormat: 'dd mmm yyyy',
+        dateFormat: 'mm/dd/yyyy',
         firstDayOfWeek: 'mo',
         sunHighlight: true,
         height: '34px',

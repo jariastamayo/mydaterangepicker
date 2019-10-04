@@ -13,11 +13,11 @@ export class DateRangeUtilService {
         };
         let isMonthStr: boolean = dateFormat.indexOf("mmm") !== -1;
 
-        if (daterange.length !== 23 && !isMonthStr || daterange.length !== 25 && isMonthStr) {
+        if (daterange.length !== 21 && !isMonthStr || daterange.length !== 25 && isMonthStr) {
             return invalidDateRange;
         }
 
-        let dates: Array<string> = daterange.split(" - ");
+        let dates: Array<string> = daterange.split("-");
         if (dates.length !== 2) {
             return invalidDateRange;
         }

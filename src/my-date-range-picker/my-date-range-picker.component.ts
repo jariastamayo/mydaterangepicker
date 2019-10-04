@@ -300,7 +300,7 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
             this.opts.maxYear = Year.max;
         }
 
-        this.dateRangeFormat = this.opts.dateFormat + " - " + this.opts.dateFormat;
+        this.dateRangeFormat = this.opts.dateFormat + "-" + this.opts.dateFormat;
 
         this.dayIdx = this.weekDayOpts.indexOf(this.opts.firstDayOfWeek);
         if (this.dayIdx !== -1) {
@@ -318,7 +318,7 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
             this.endDate = this.parseSelectedDate(value["endDate"]);
             let begin: string = this.formatDate(this.beginDate);
             let end: string = this.formatDate(this.endDate);
-            this.selectionDayTxt = begin + " - " + end;
+            this.selectionDayTxt = begin + "-" + end;
             this.titleAreaText = this.selectionDayTxt;
             this.inputFieldChanged.emit({value: this.selectionDayTxt, dateRangeFormat: this.dateRangeFormat, valid: true});
         }
@@ -375,7 +375,7 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
             let sdr: any = changes["selDateRange"];
             if (sdr.currentValue !== null && sdr.currentValue !== undefined && sdr.currentValue !== "") {
                 if (typeof sdr.currentValue === "string") {
-                    let split: Array<string> = sdr.currentValue.split(" - ");
+                    let split: Array<string> = sdr.currentValue.split("-");
                     this.beginDate = this.parseSelectedDate(split[0]);
                     this.endDate = this.parseSelectedDate(split[1]);
                     this.selectionDayTxt = sdr.currentValue;
@@ -383,7 +383,7 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
                 else if (typeof sdr.currentValue === "object") {
                     this.beginDate = this.parseSelectedDate(sdr.currentValue["beginDate"]);
                     this.endDate = this.parseSelectedDate(sdr.currentValue["endDate"]);
-                    this.selectionDayTxt = this.formatDate(this.beginDate) + " - " + this.formatDate(this.endDate);
+                    this.selectionDayTxt = this.formatDate(this.beginDate) + "-" + this.formatDate(this.endDate);
                 }
                 this.titleAreaText = this.selectionDayTxt;
                 setTimeout(() => {
@@ -500,12 +500,12 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
         if (!ei) {
             if (!bi || bi && this.drus.getTimeInMilliseconds(cell.dateObj) < this.drus.getTimeInMilliseconds(this.beginDate)) {
                 this.selectBeginDate(cell.dateObj);
-                this.titleAreaText = this.formatDate(cell.dateObj) + " - " + this.opts.selectEndDateTxt;
+                this.titleAreaText = this.formatDate(cell.dateObj) + "-" + this.opts.selectEndDateTxt;
             }
             else if (this.drus.getTimeInMilliseconds(cell.dateObj) >= this.drus.getTimeInMilliseconds(this.beginDate)) {
                 this.selectEndDate(cell.dateObj);
                 this.rangeSelected();
-                this.titleAreaText = this.formatDate(this.beginDate) + " - " + this.formatDate(cell.dateObj);
+                this.titleAreaText = this.formatDate(this.beginDate) + "-" + this.formatDate(cell.dateObj);
             }
         }
     }
@@ -513,14 +513,14 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
     selectBeginDate(date: IMyDate): void {
         this.beginDate = date;
         let formatted: string = this.formatDate(date);
-        this.titleAreaText = formatted + " - " + this.opts.selectEndDateTxt;
+        this.titleAreaText = formatted + "-" + this.opts.selectEndDateTxt;
         this.dateSelected.emit({type: 1, date: date, formatted: formatted, jsdate: this.getDate(date)});
     }
 
     selectEndDate(date: IMyDate): void {
         this.endDate = date;
         let formatted: string = this.formatDate(date);
-        this.titleAreaText = this.formatDate(this.beginDate) + " - " + formatted;
+        this.titleAreaText = this.formatDate(this.beginDate) + "-" + formatted;
         this.dateSelected.emit({type: 2, date: date, formatted: formatted, jsdate: this.getDate(date)});
     }
 
@@ -572,7 +572,7 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
     rangeSelected(): void {
         // Accept button clicked
         let dateRangeModel: IMyDateRangeModel = this.getDateRangeModel(this.beginDate, this.endDate);
-        this.selectionDayTxt = this.formatDate(this.beginDate) + " - " + this.formatDate(this.endDate);
+        this.selectionDayTxt = this.formatDate(this.beginDate) + "-" + this.formatDate(this.endDate);
         this.showSelector = false;
         this.dateRangeChanged.emit(dateRangeModel);
         this.inputFieldChanged.emit({value: this.selectionDayTxt, dateRangeFormat: this.dateRangeFormat, valid: true});
@@ -588,7 +588,7 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
         // Creates a date range model object from the given parameters
         let bEpoc: number = this.drus.getTimeInMilliseconds(beginDate) / 1000.0;
         let eEpoc: number = this.drus.getTimeInMilliseconds(endDate) / 1000.0;
-        return {beginDate: beginDate, beginJsDate: this.getDate(beginDate), endDate: endDate, endJsDate: this.getDate(endDate), formatted: this.formatDate(beginDate) + " - " + this.formatDate(endDate), beginEpoc: bEpoc, endEpoc: eEpoc};
+        return {beginDate: beginDate, beginJsDate: this.getDate(beginDate), endDate: endDate, endJsDate: this.getDate(endDate), formatted: this.formatDate(beginDate) + "-" + this.formatDate(endDate), beginEpoc: bEpoc, endEpoc: eEpoc};
     }
 
     isInRange(val: any): boolean {
